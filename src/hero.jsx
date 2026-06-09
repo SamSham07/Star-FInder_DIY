@@ -342,25 +342,6 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
             </div>
           </div>
           <div style={{ fontSize: 13, lineHeight: 1.5, color: 'rgba(26,40,69,0.85)' }}>{content.fact}</div>
-          {(() => {
-          const v = window.getViewing && window.getViewing(obj.id, lang);
-          if (!v) return null;
-          return (
-            <div style={{
-              marginTop: 10, padding: '8px 10px', borderRadius: 9,
-              background: 'rgba(45,167,215,0.10)',
-              border: '1px solid rgba(45,167,215,0.28)'
-            }}>
-                <div className="mono" style={{ fontSize: 11, lineHeight: 1.45, fontWeight: 600,
-                color: v.status === 'not-visible' ? 'rgba(26,40,69,0.55)' : '#1c6f93' }}>
-                  {v.main}
-                </div>
-                <div className="mono" style={{ fontSize: 10, marginTop: 3, color: 'rgba(26,40,69,0.50)' }}>
-                  {v.appears && v.gone ? `${v.appears}–${v.gone}` : v.now}
-                </div>
-              </div>);
-
-        })()}
           <div style={{ marginTop: 10, fontSize: 11, color: 'var(--gold)', fontWeight: 600 }} className="mono">
             {found ? '✓ DISCOVERED' : '+ NEW DISCOVERY'}
           </div>

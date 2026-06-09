@@ -40,7 +40,7 @@ function MalaysiaMap({ lang, salesData }) {
           <div className="map-iframe-wrap" style={{ position: 'relative', aspectRatio: '4 / 3', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 60px rgba(26,40,69,0.15)', background: '#fff' }}>
             <iframe
               width="600" height="450"
-              src="https://lookerstudio.google.com/embed/reporting/81491214-49e4-46e6-ae3b-a10d06f766db/page/z7uzF"
+              src="https://lookerstudio.google.com/embed/reporting/81491214-49e4-46e6-ae3b-a10d06f766db"
               frameBorder="0"
               style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '133.33%' }}
               allowFullScreen
@@ -61,7 +61,7 @@ function MalaysiaMap({ lang, salesData }) {
           </div>
 
           {/* Mobile fallback — iframe hidden on small screens */}
-          <a className="map-mobile-link" href="https://lookerstudio.google.com/embed/reporting/81491214-49e4-46e6-ae3b-a10d06f766db/page/z7uzF" target="_blank" rel="noopener noreferrer" style={{
+          <a className="map-mobile-link" href="https://datastudio.google.com/reporting/81491214-49e4-46e6-ae3b-a10d06f766db" target="_blank" rel="noopener noreferrer" style={{
             display: 'none', alignItems: 'center', justifyContent: 'center', gap: 10,
             padding: '18px 24px', borderRadius: 16,
             background: 'rgba(255,250,205,0.06)',

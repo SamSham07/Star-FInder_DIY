@@ -145,15 +145,14 @@
       darkNow: darkNow,
       visibleNow: darkNow && altNow > 0              // genuinely observable this minute
     };
-    if (firstUp && maxAlt >= 8) {
+    if (firstUp) {
       var allNight = nightStart && nightEnd &&
         (firstUp.getTime() - nightStart.getTime() < 7 * 60000) &&
         (nightEnd.getTime() - lastUp.getTime() < 7 * 60000);
-      res.status = allNight ? 'all-night' : 'visible';
+      res.status = (maxAlt >= 8) ? (allNight ? 'all-night' : 'visible') : 'barely-visible';
       res.appears = klStr(firstUp);
       res.gone = klStr(lastUp);
-      res.best = klStr(maxTime);
-      res.bestAlt = Math.round(maxAlt);
+      if (maxTime) { res.best = klStr(maxTime); res.bestAlt = Math.round(maxAlt); }
     }
     cache[key] = res;
     return res;

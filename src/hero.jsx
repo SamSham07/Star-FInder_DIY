@@ -325,7 +325,6 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
         boxShadow: '0 -12px 36px rgba(26,40,69,0.3)',
         color: 'var(--cream)',
         textAlign: 'left',
-        animation: 'slideUp 0.3s ease-out',
         zIndex: 100,
         maxHeight: '40vh',
         overflowY: 'auto'

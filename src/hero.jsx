@@ -328,7 +328,7 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
         backdropFilter: 'blur(16px)',
         border: '1px solid var(--gold)',
         boxShadow: '0 12px 36px rgba(26,40,69,0.18), 0 0 20px rgba(247,201,72,0.25)',
-        color: 'var(--navy-1)', textAlign: 'left',
+        color: 'var(--cream)', textAlign: 'left',
         animation: 'fadeIn 0.25s ease-out',
         zIndex: 60
       }}>
@@ -338,7 +338,7 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
             </div>
             <div>
               <div style={{ fontSize: 11, color: 'var(--gold)' }} className="mono">{obj.type.toUpperCase()}</div>
-              <div style={{ fontSize: 16, fontWeight: 700 }}>{content.name}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--cream)' }}>{content.name}</div>
             </div>
           </div>
           <div style={{ fontSize: 13, lineHeight: 1.5, color: 'rgba(26,40,69,0.85)' }}>{content.fact}</div>

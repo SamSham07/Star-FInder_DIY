@@ -189,7 +189,7 @@
         ms: '🔭 Malam ini: ' + v.appears + '–' + v.gone + ' · paling tinggi ' + v.best
       }[L];
     }
-    return { main: main, now: nowTxt, status: v.status };
+    return { main: main, now: nowTxt, appears: v.appears, gone: v.gone, status: v.status };
   }
 
   // compact always-on label for the hero (short window + live altitude)

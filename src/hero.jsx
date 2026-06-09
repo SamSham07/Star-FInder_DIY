@@ -313,21 +313,24 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
 
       {open &&
       <div onClick={(e) => e.stopPropagation()} style={{
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        maxWidth: '100%',
-        padding: '20px',
-        background: 'linear-gradient(to top, rgba(26,40,69,0.95), rgba(26,40,69,0.92))',
+        position: 'absolute',
+        ...(y > 55 ?
+        { bottom: `calc(100% + 14px)`, top: 'auto' } :
+        { top: `calc(100% + 14px)`, bottom: 'auto' }),
+        ...(x > 75 ?
+        { right: '50%', left: 'auto', transform: 'translateX(50%)' } :
+        x < 25 ?
+        { left: '50%', right: 'auto', transform: 'translateX(-50%)' } :
+        { left: '50%', right: 'auto', transform: 'translateX(-50%)' }),
+        width: 280, padding: '14px 16px',
+        borderRadius: 14,
+        background: 'rgba(255,255,255,0.92)',
         backdropFilter: 'blur(16px)',
-        borderTop: '2px solid var(--gold)',
-        boxShadow: '0 -12px 36px rgba(26,40,69,0.3)',
-        color: 'var(--cream)',
-        textAlign: 'left',
-        zIndex: 100,
-        maxHeight: '40vh',
-        overflowY: 'auto'
+        border: '1px solid var(--gold)',
+        boxShadow: '0 12px 36px rgba(26,40,69,0.18), 0 0 20px rgba(247,201,72,0.25)',
+        color: 'var(--cream)', textAlign: 'left',
+        animation: 'fadeIn 0.25s ease-out',
+        zIndex: 60
       }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
             <div style={{ width: 32, height: 32, display: 'grid', placeItems: 'center' }}>
@@ -338,21 +341,21 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
               <div style={{ fontSize: 16, fontWeight: 700 }}>{content.name}</div>
             </div>
           </div>
-          <div style={{ fontSize: 13, lineHeight: 1.5, color: 'rgba(255,250,205,0.9)' }}>{content.fact}</div>
+          <div style={{ fontSize: 13, lineHeight: 1.5, color: 'rgba(26,40,69,0.85)' }}>{content.fact}</div>
           {(() => {
           const v = window.getViewing && window.getViewing(obj.id, lang);
           if (!v) return null;
           return (
             <div style={{
               marginTop: 10, padding: '8px 10px', borderRadius: 9,
-              background: 'rgba(45,167,215,0.15)',
-              border: '1px solid rgba(45,167,215,0.40)'
+              background: 'rgba(45,167,215,0.10)',
+              border: '1px solid rgba(45,167,215,0.28)'
             }}>
                 <div className="mono" style={{ fontSize: 11, lineHeight: 1.45, fontWeight: 600,
-                color: v.status === 'not-visible' ? 'rgba(255,250,205,0.55)' : '#FFC928' }}>
+                color: v.status === 'not-visible' ? 'rgba(26,40,69,0.55)' : '#1c6f93' }}>
                   {v.main}
                 </div>
-                <div className="mono" style={{ fontSize: 10, marginTop: 3, color: 'rgba(255,250,205,0.7)' }}>
+                <div className="mono" style={{ fontSize: 10, marginTop: 3, color: 'rgba(26,40,69,0.50)' }}>
                   {v.appears && v.gone ? `${v.appears}–${v.gone}` : v.now}
                 </div>
               </div>);

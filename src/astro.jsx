@@ -145,14 +145,20 @@
       darkNow: darkNow,
       visibleNow: darkNow && altNow > 0              // genuinely observable this minute
     };
-    if (firstUp) {
+    // Always set appears/gone if object rises above 0° at any point
+    if (firstUp && lastUp) {
+      res.appears = klStr(firstUp);
+      res.gone = klStr(lastUp);
+    }
+    // Set status and best altitude only if it gets high enough
+    if (firstUp && maxAlt >= 8) {
       var allNight = nightStart && nightEnd &&
         (firstUp.getTime() - nightStart.getTime() < 7 * 60000) &&
         (nightEnd.getTime() - lastUp.getTime() < 7 * 60000);
-      res.status = (maxAlt >= 8) ? (allNight ? 'all-night' : 'visible') : 'barely-visible';
-      res.appears = klStr(firstUp);
-      res.gone = klStr(lastUp);
+      res.status = allNight ? 'all-night' : 'visible';
       if (maxTime) { res.best = klStr(maxTime); res.bestAlt = Math.round(maxAlt); }
+    } else if (firstUp) {
+      res.status = 'barely-visible';
     }
     cache[key] = res;
     return res;

@@ -244,9 +244,9 @@ function Meteors({ active }) {
 }
 
 // ----- A celestial object (clickable, with tooltip) -----
-function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover }) {
+function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, selectedId, onSelectObject }) {
   const [hover, setHover] = useState(false);
-  const [open, setOpen] = useState(false);
+  const open = selectedId === obj.id;
 
   const content = obj[lang];
 
@@ -275,11 +275,11 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover }) {
   useEffect(() => {
     if (!open) return;
     const close = (e) => {
-      if (!e.target.closest?.('[data-celestial-id="' + obj.id + '"]')) setOpen(false);
+      if (!e.target.closest?.('[data-celestial-id="' + obj.id + '"]')) onSelectObject(null);
     };
     window.addEventListener('click', close);
     return () => window.removeEventListener('click', close);
-  }, [open, obj.id]);
+  }, [open, obj.id, onSelectObject]);
 
   return (
     <div
@@ -295,8 +295,8 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover }) {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={(e) => {e.stopPropagation();setOpen((o) => !o);if (!found) onDiscover(obj.id);}}
-      onKeyDown={(e) => {if (e.key === 'Enter' || e.key === ' ') {e.preventDefault();e.stopPropagation();setOpen((o) => !o);if (!found) onDiscover(obj.id);}}}
+      onClick={(e) => {e.stopPropagation();onSelectObject(open ? null : obj.id);if (!found) onDiscover(obj.id);}}
+      onKeyDown={(e) => {if (e.key === 'Enter' || e.key === ' ') {e.preventDefault();e.stopPropagation();onSelectObject(open ? null : obj.id);if (!found) onDiscover(obj.id);}}}
       role="button"
       tabIndex={0}
       aria-label={content.name}>
@@ -317,8 +317,11 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover }) {
         ...(y > 55 ?
         { bottom: `calc(100% + 14px)`, top: 'auto' } :
         { top: `calc(100% + 14px)`, bottom: 'auto' }),
-        left: '50%',
-        transform: 'translateX(-50%)',
+        ...(x > 75 ?
+        { right: '50%', left: 'auto', transform: 'translateX(50%)' } :
+        x < 25 ?
+        { left: '50%', right: 'auto', transform: 'translateX(-50%)' } :
+        { left: '50%', right: 'auto', transform: 'translateX(-50%)' }),
         width: 280, padding: '14px 16px',
         borderRadius: 14,
         background: 'rgba(255,255,255,0.92)',
@@ -326,7 +329,8 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover }) {
         border: '1px solid var(--gold)',
         boxShadow: '0 12px 36px rgba(26,40,69,0.18), 0 0 20px rgba(247,201,72,0.25)',
         color: 'var(--cream)', textAlign: 'left',
-        animation: 'fadeIn 0.25s ease-out'
+        animation: 'fadeIn 0.25s ease-out',
+        zIndex: 60
       }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
             <div style={{ width: 32, height: 32, display: 'grid', placeItems: 'center' }}>
@@ -352,7 +356,7 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover }) {
                   {v.main}
                 </div>
                 <div className="mono" style={{ fontSize: 10, marginTop: 3, color: 'rgba(26,40,69,0.50)' }}>
-                  {v.now}
+                  {v.appears && v.gone ? `${v.appears}–${v.gone}` : v.now}
                 </div>
               </div>);
 
@@ -860,6 +864,7 @@ function Hero({ lang, found, onDiscover }) {
   const [skyOverride, setSkyOverride] = useState(null);
   const sky = useSkyTheme(skyOverride);
   const [greeting, setGreeting] = useState(() => greetingFor(new Date().getHours(), lang));
+  const [selectedId, setSelectedId] = useState(null);
   useEffect(() => {
     setGreeting(greetingFor(new Date().getHours(), lang));
     const timer = setInterval(() => setGreeting(greetingFor(new Date().getHours(), lang)), 60000);
@@ -954,7 +959,9 @@ function Hero({ lang, found, onDiscover }) {
             key={obj.id} obj={obj} lang={lang}
             x={p.x} y={p.y} size={p.size}
             found={found.has(obj.id)}
-            onDiscover={onDiscover} />);
+            onDiscover={onDiscover}
+            selectedId={selectedId}
+            onSelectObject={setSelectedId} />);
 
 
       })}

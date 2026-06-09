@@ -313,24 +313,22 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
 
       {open &&
       <div onClick={(e) => e.stopPropagation()} style={{
-        position: 'absolute',
-        ...(y > 55 ?
-        { bottom: `calc(100% + 14px)`, top: 'auto' } :
-        { top: `calc(100% + 14px)`, bottom: 'auto' }),
-        ...(x > 75 ?
-        { right: '50%', left: 'auto', transform: 'translateX(50%)' } :
-        x < 25 ?
-        { left: '50%', right: 'auto', transform: 'translateX(-50%)' } :
-        { left: '50%', right: 'auto', transform: 'translateX(-50%)' }),
-        width: 280, padding: '14px 16px',
-        borderRadius: 14,
-        background: 'rgba(255,255,255,0.92)',
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        maxWidth: '100%',
+        padding: '20px',
+        background: 'linear-gradient(to top, rgba(26,40,69,0.95), rgba(26,40,69,0.92))',
         backdropFilter: 'blur(16px)',
-        border: '1px solid var(--gold)',
-        boxShadow: '0 12px 36px rgba(26,40,69,0.18), 0 0 20px rgba(247,201,72,0.25)',
-        color: 'var(--cream)', textAlign: 'left',
-        animation: 'fadeIn 0.25s ease-out',
-        zIndex: 60
+        borderTop: '2px solid var(--gold)',
+        boxShadow: '0 -12px 36px rgba(26,40,69,0.3)',
+        color: 'var(--cream)',
+        textAlign: 'left',
+        animation: 'slideUp 0.3s ease-out',
+        zIndex: 100,
+        maxHeight: '40vh',
+        overflowY: 'auto'
       }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
             <div style={{ width: 32, height: 32, display: 'grid', placeItems: 'center' }}>

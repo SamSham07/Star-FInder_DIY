@@ -129,17 +129,28 @@ function StatsSection({ lang, salesData }) {
           ✦ {t.social || '社区力量'}
         </div>
 
-        <div className="display" style={{
-          fontSize: 'clamp(80px, 12vw, 150px)',
-          lineHeight: 0.9,
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 'clamp(20px, 3vw, 40px)',
           margin: '0 0 20px',
-          background: 'linear-gradient(135deg, var(--gold) 0%, var(--orange-2) 100%)',
-          backgroundClip: 'text',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          letterSpacing: '-0.02em',
         }}>
-          {count}+
+          <img src="src/assets/girl-mascot.png" alt="Girl mascot" style={{
+            height: 'clamp(150px, 25vw, 350px)',
+            width: 'auto',
+          }} />
+          <div className="display" style={{
+            fontSize: 'clamp(80px, 12vw, 150px)',
+            lineHeight: 0.9,
+            background: 'linear-gradient(135deg, var(--gold) 0%, var(--orange-2) 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-0.02em',
+          }}>
+            {count}+
+          </div>
         </div>
 
         <p style={{

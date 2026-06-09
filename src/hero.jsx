@@ -318,9 +318,9 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
         { bottom: `calc(100% + 14px)`, top: 'auto' } :
         { top: `calc(100% + 14px)`, bottom: 'auto' }),
         ...(x > 75 ?
-        { right: '50%', left: 'auto', transform: 'translateX(50%)' } :
+        { right: 0, left: 'auto', transform: 'none' } :
         x < 25 ?
-        { left: '50%', right: 'auto', transform: 'translateX(-50%)' } :
+        { left: 0, right: 'auto', transform: 'none' } :
         { left: '50%', right: 'auto', transform: 'translateX(-50%)' }),
         width: 280, padding: '14px 16px',
         borderRadius: 14,
@@ -328,7 +328,7 @@ function CelestialObject({ obj, lang, x, y, size = 60, found, onDiscover, select
         backdropFilter: 'blur(16px)',
         border: '1px solid var(--gold)',
         boxShadow: '0 12px 36px rgba(26,40,69,0.18), 0 0 20px rgba(247,201,72,0.25)',
-        color: 'var(--cream)', textAlign: 'left',
+        color: 'var(--navy-1)', textAlign: 'left',
         animation: 'fadeIn 0.25s ease-out',
         zIndex: 60
       }}>
@@ -1033,22 +1033,22 @@ function Hero({ lang, found, onDiscover }) {
           const complete = done === total;
           return (
             <div style={{
-              marginTop: 50, display: 'inline-flex', alignItems: 'center', gap: 14,
-              padding: '12px 18px', borderRadius: 18,
+              marginTop: 50, display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '8px 14px', borderRadius: 18,
               background: 'rgba(255,255,255,0.40)',
               border: '3px solid var(--gold)',
               backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
               boxShadow: '0 8px 0 rgba(247,201,72,0.16), 0 14px 28px rgba(26,40,69,0.12)',
-              maxWidth: '92vw', flexWrap: 'wrap', justifyContent: 'center'
+              maxWidth: '92vw', flexWrap: 'nowrap', whiteSpace: 'nowrap'
             }}>
-              <span style={{ fontSize: 26, lineHeight: 1, animation: 'float 3s ease-in-out infinite' }}>🔭</span>
+              <span style={{ fontSize: 20, lineHeight: 1, animation: 'float 3s ease-in-out infinite', flexShrink: 0 }}>🔭</span>
 
-              <div style={{ display: 'flex', gap: 5 }}>
+              <div style={{ display: 'flex', gap: 3 }}>
                 {objects.map((o, i) => {
                   const got = found.has(o.id);
                   return (
                     <span key={o.id} style={{
-                      width: 26, height: 26,
+                      width: 20, height: 20, flexShrink: 0,
                       clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
                       background: got ? 'linear-gradient(180deg, var(--gold), #e0a92e)' : 'rgba(26,40,69,0.22)',
                       filter: got ? 'drop-shadow(0 0 5px rgba(247,201,72,0.8))' : 'none',
@@ -1060,7 +1060,7 @@ function Hero({ lang, found, onDiscover }) {
               </div>
 
               <span style={{
-                fontWeight: 800, fontSize: 18, fontFamily: 'inherit', color: 'var(--navy-1)', whiteSpace: 'nowrap'
+                fontWeight: 800, fontSize: 14, fontFamily: 'inherit', color: 'var(--navy-1)', whiteSpace: 'nowrap', flexShrink: 0
               }}>
                 <span style={{ color: '#d99a1f' }}>{done}</span>/{total}
               </span>

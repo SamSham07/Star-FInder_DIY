@@ -97,10 +97,7 @@ function TonightSky({ lang }) {
                   {d.status === 'not-visible' ? (
                     <span style={{ fontWeight: 500 }}>↓ {L(copy.belowShort)}</span>
                   ) : d.visibleNow ? (
-                    <React.Fragment>
-                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#15915f', boxShadow: '0 0 5px rgba(21,145,95,0.6)', flexShrink: 0 }} />
-                      <span style={{ color: '#15915f' }}>{L(copy.nowUp)} {d.altNow}°</span>
-                    </React.Fragment>
+                    <span>{d.appears}<span style={{ color: 'var(--ink-mute)', margin: '0 2px' }}>–</span>{d.gone}</span>
                   ) : d.status === 'all-night' ? (
                     <span>{L(copy.allNight)}</span>
                   ) : (

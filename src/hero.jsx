@@ -762,7 +762,7 @@ function Header({ lang, setLang, onOpenLangPicker, showHeader }) {
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
 
       display: 'flex',
-      background: showHeader || menuOpen ? 'linear-gradient(180deg, rgba(110,207,245,0.92), rgba(110,207,245,0))' : 'transparent',
+      background: showHeader || menuOpen ? 'linear-gradient(180deg, rgba(110,207,245,0.75) 0%, transparent 100%)' : 'transparent',
       transition: 'background 0.3s', lineHeight: "1.2", justifyContent: "space-between", alignItems: "center", padding: "18px 28px", opacity: "1", fontWeight: "500", height: "80px"
     }} data-comment-anchor="b2073a1d52-header-561-5">
       <button onClick={() => goTo(null)} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>

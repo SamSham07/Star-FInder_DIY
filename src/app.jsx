@@ -136,7 +136,7 @@ function StatsSection({ lang, salesData }) {
           gap: 'clamp(20px, 3vw, 40px)',
           margin: '0 0 20px',
         }}>
-          <img src="src/assets/girl-mascot.png" alt="Girl mascot" style={{
+          <img src="src/assets/girl-mascot.png?v=2" alt="Girl mascot" style={{
             height: 'clamp(150px, 25vw, 350px)',
             width: 'auto',
           }} />

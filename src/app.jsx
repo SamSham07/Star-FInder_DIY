@@ -360,7 +360,16 @@ function App() {
                 </div>
               </div>
               
-              <FormSurvey lang={activeLang} />
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScsuCDSxrRKMTi11dv1b7UEwJtz_xWSfA_fPNWFco31ftsPEQ/viewform?embedded=true"
+                width="100%"
+                height="6716"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
+                style={{ display: 'block', width: '100%', maxWidth: 700 }}
+                onLoad={(e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              >Loading…</iframe>
             </div>
           </section>
 

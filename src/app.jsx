@@ -368,7 +368,6 @@ function App() {
                 marginHeight="0"
                 marginWidth="0"
                 style={{ display: 'block', width: '100%', maxWidth: 700 }}
-                onLoad={(e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'start' })}
               >Loading…</iframe>
             </div>
           </section>

@@ -497,7 +497,7 @@ function FormSection() {return null;}
 
 // ===== Section 4: Story / "Why we built this telescope" =====
 const STORY_PHOTOS = [
-'uploads/backyard.jpg',
+'uploads/backyard.png',
 'uploads/Family-d4d788f6.jpg',
 'uploads/family_buiding-35317de3.png'];
 
